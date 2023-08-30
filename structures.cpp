@@ -137,21 +137,15 @@ void initializeIdCriticalAndFOpt(Solution& s, const Problem& p)
 		s.isCritical[i] = false;
 		s.f_opt = std::max(s.f_opt, p.d[i][s.c1[i]]);
 	}
-	/*{
-		if (s.f_opt < p.d[i][s.c1[i]])
-		{
-			s.f_opt = p.d[i][s.c1[i]];
-			s.id_crit = i;
-		}
-	}*/
 	
 	s.critUsersNum = 0;
 	for (int i = 0;i < p.n;i++)
 	{
 		if (s.f_opt == p.d[i][s.c1[i]])
 		{
-			s.critUsersNum++;
 			s.id_crit = i;
+			s.criticalUsers[s.critUsersNum] = i;
+			s.critUsersNum++;
 		}
 
 		//if (s.f_opt == p.d[i][s.c1[i]] && s.isCritical[s.c1[i]] == false)
